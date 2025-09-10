@@ -1,26 +1,86 @@
+/* app/globals.css */
+
+/* 1. google Fonts vs hosting locally */
+/* @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"); */
+
+/* 2. Tailwind core */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 3. Plugins */
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
+
+/* 4. Theme tokens (from your old config) */
+@theme {
+  /* Breakpoints */
+  --breakpoint-xs: 475px;
+
+  /* Radius */
+  --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Colors */
+  --color-primary-100: #FFE8F0;
+  --color-primary: #EE2B69;
+
+  --color-secondary: #FBE843;
+
+  --color-black-100: #333333;
+  --color-black-200: #141413;
+  --color-black-300: #7D8087;
+  --color-black: #000000;
+
+  --color-white-100: #F7F7F7;
+  --color-white: #FFFFFF;
+
+  /* Shadows */
+  --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+  --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+  --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
+
+  /* Fonts */
+  --font-work-sans: var(--font-work-sans);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 5. Base tweaks */
+button { @apply cursor-pointer; }
+
+/* 6. Custom utilities */
+.flex-between { @apply flex justify-between items-center; }
+
+.text-30-extrabold { @apply text-[30px] font-extrabold text-white; }
+.text-30-bold      { @apply text-[30px] font-bold text-black; }
+.text-30-semibold  { @apply font-semibold text-[30px] text-black; }
+.text-26-semibold  { @apply font-semibold text-[26px] text-black; }
+.text-24-black     { @apply text-[24px] font-black text-black; }
+.text-20-medium    { @apply font-medium text-[20px] text-black; }
+.text-16-medium    { @apply font-medium text-[16px] text-black; }
+.text-14-normal    { @apply font-normal text-sm text-white-100/80; }
+
+/* … all the other classes you pasted earlier … */
+
+.pattern {
+  background-image: linear-gradient(
+    to right,
+    transparent 49.5%,
+    rgb(251 232 67 / 0.2) 49.5%,
+    rgb(251 232 67 / 0.6) 50.5%,
+    transparent 50.5%
+  );
+  background-size: 5% 100%;
+  background-position: center;
+  background-repeat: repeat-x;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.tag-tri {
+  @apply before:content-[''] before:absolute before:top-2 before:left-2
+         before:border-t-[10px] before:border-t-black before:border-r-[10px]
+         before:border-r-transparent after:content-[''] after:absolute
+         after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black
+         after:border-l-[10px] after:border-l-transparent;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* markdown editor tweak */
+.w-md-editor-toolbar { padding: 10px !important; }
