@@ -1,5 +1,8 @@
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import SearchForm from "../components/SearchForm/SearchForm";
-import StartupCard from "../components/StartupCard";
+import StartupCard, { StartupSanityTypeCard } from "../components/StartupCard";
+import { client } from "@/sanity/lib/client";
+// import { StartupTypeCard } from "@/types/startup";
 
 export default async function Home({
   searchParams,
@@ -8,19 +11,7 @@ export default async function Home({
 }) {
   const query = (await searchParams)?.query;
 
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: { _id: 1, name: "Keanu" },
-      _id: 1,
-      description: "This is a descrption",
-      imageSmall: "/touch_640.jpg",
-      imageMedium: "/touch_1280.jpg",
-      category: "Robots",
-      title: "We Robots",
-    },
-  ];
+  const posts = await client.fetch(STARTUPS_QUERY);
 
   return (
     <>
@@ -40,7 +31,8 @@ export default async function Home({
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post, index: number) => (
+            posts.map((post: StartupSanityTypeCard) => (
+              // posts.map((post:StartupTypeCard ) => (
               <StartupCard key={post?._id} post={post} />
             ))
           ) : (
