@@ -6,3 +6,11 @@ export function formatDate(d: string | Date) {
     year: "numeric",
   });
 }
+
+// export function formatDate(date: string) {
+//   return new Date(date).toLocaleDateString("en-US", {
+//     month: "long",
+//     day: "numeric",
+//     year: "numeric",
+//   });
+// }

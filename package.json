@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "npm@11.6.0",
   "overrides": {
@@ -14,11 +15,17 @@
     "react-dom": "$react-dom"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.9.0",
     "lucide-react": "^0.544.0",
     "next": "15.5.2",
     "next-auth": "^5.0.0-beta.29",
+    "next-sanity": "^10.0.17-canary.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "sanity": "^4.9.0",
+    "sanity-plugin-markdown": "^6.0.0",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -4,6 +4,11 @@ import { EyeIcon } from "lucide-react";
 import { StartupTypeCard } from "@/types/startup";
 import Link from "next/link";
 import Image from "next/image";
+import { Author, Startup } from "@/sanity/types";
+
+export type StartupSanityTypeCard = Omit<Startup, "author"> & {
+  author?: Author;
+};
 
 const StartupCard = ({
   post: {
@@ -12,13 +17,15 @@ const StartupCard = ({
     _id,
     title,
     description,
-    imageSmall,
-    imageMedium,
+    // imageSmall,
+    // imageMedium,
+    image,
     category,
-    author: { _id: authorId, name },
+    author,
   },
 }: {
-  post: StartupTypeCard;
+  // post: StartupTypeCard;
+  post: StartupSanityTypeCard;
 }) => {
   return (
     <li className="startup-card group">
@@ -32,13 +39,13 @@ const StartupCard = ({
       <div className="flex-between mt-5 gap-5">
         <div className="flex-1">
           <p className="text-16-medium line-clamp-1">
-            <Link href={`/user/${authorId}`}>{name}</Link>
+            <Link href={`/user/${author?.id}`}>{author?.name}</Link>
           </p>
           <h3 className="text-26-semibold line-clamp-1">
             <Link href={`/startp/${_id}`}>{title}</Link>
           </h3>
         </div>
-        <Link href={`/user/${authorId}`}>
+        <Link href={`/user/${author?.id}`}>
           <Image
             src="/touch_1280.jpg"
             alt="placeholder"
@@ -52,11 +59,11 @@ const StartupCard = ({
       <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
         {/* <Image src="/touch_1280.jpg" alt="placeholder" className="startup-card_img"/> */}
-        <img src={imageSmall} alt="placeholder" className="startup-card_img" />
+        <img src={image} alt="placeholder" className="startup-card_img" />
       </Link>
 
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category.toLowerCase()}`}>
+        <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className="text-16-medium">{category}</p>
         </Link>
         <button className="startup-card_btn">
