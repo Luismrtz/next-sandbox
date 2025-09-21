@@ -18,13 +18,14 @@
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.9.0",
     "lucide-react": "^0.544.0",
-    "next": "15.5.2",
+    "next": "^15.6.0-canary.14",
     "next-auth": "^5.0.0-beta.29",
     "next-sanity": "^10.0.17-canary.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sanity": "^4.9.0",
     "sanity-plugin-markdown": "^6.0.0",
+    "server-only": "^0.0.1",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
